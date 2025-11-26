@@ -5,10 +5,10 @@ namespace Tyuiu.VyazovES.Sprint2.Task5.V8.Lib
     {
         public string FindDateOfPreviousDay(int m, int n)
         {
-
             int prevDay;
             int prevMonth;
 
+            // Если текущий день первый в месяце
             if (n == 1)
             {
                 prevMonth = m - 1;
@@ -32,7 +32,7 @@ namespace Tyuiu.VyazovES.Sprint2.Task5.V8.Lib
                         prevDay = 30;
                         break;
                     case 2:
-                        // Февраль - 28 дней (без учёта високосного года для простоты)
+                        // Февраль - 28 дней
                         prevDay = 28;
                         break;
                     case 0:
@@ -41,8 +41,7 @@ namespace Tyuiu.VyazovES.Sprint2.Task5.V8.Lib
                         prevDay = 31;
                         break;
                     default:
-                        prevMonth = m;
-                        prevDay = n - 1;
+                        prevDay = 0;
                         break;
                 }
             }
@@ -53,8 +52,11 @@ namespace Tyuiu.VyazovES.Sprint2.Task5.V8.Lib
                 prevDay = n - 1;
             }
 
-            string prevDay1 = Convert.ToString(prevDay);
-            return prevDay1;
+            // Добавляем ноль перед месяцем, если он от 1 до 9
+            string monthFormatted = prevMonth < 10 ? $"0{prevMonth}" : prevMonth.ToString();
+
+            // Возвращаем в формате "день.месяц"
+            return $"{prevDay}.{monthFormatted}";
         }
     }
 }
